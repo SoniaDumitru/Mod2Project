@@ -1,6 +1,7 @@
 class CartProductsController < ApplicationController
 
   def create
+    current_cart
     # Find associated product and current cart
     chosen_product = Product.find(params[:product_id])
 

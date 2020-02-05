@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user
 
-  # before_action :current_cart
+   # before_action :current_cart
 
   def cart
     session[:cart] ||= []
@@ -27,7 +27,10 @@ class ApplicationController < ActionController::Base
    def current_cart
      # if session[:user_id]
      if !session[:user_id]
-       session[:user_id] = User.create_guest.id
+       guest_user = User.create_guest
+
+       session[:user_id] = guest_user.id
+       
      end
      if cart = Cart.find_by(:id => session[:cart_id])
        @current_cart = cart
